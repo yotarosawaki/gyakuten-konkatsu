@@ -463,9 +463,9 @@ const ART = (() => {
     },
     aquarium(s) {
       if (s.char === 'ninomiya') {
-        R(110, 90, 1, 26, '#2a7ad0'); R(129, 90, 1, 26, '#2a7ad0');
-        RO(110, 115, 20, 13, '#ffffff', '#2a3a5a'); R(110, 115, 20, 4, '#2a7ad0');
-        for (let i = 0; i < 3; i++) E(115 + i * 5, 123, 1.5, 1.5, '#e8b890');
+        P([[107, 108], [108, 108], [114, 128], [113, 128]], '#2a7ad0'); P([[132, 108], [133, 108], [127, 128], [126, 128]], '#2a7ad0');
+        RO(110, 127, 20, 13, '#ffffff', '#2a3a5a'); R(110, 127, 20, 4, '#2a7ad0');
+        for (let i = 0; i < 3; i++) E(115 + i * 5, 135, 1.5, 1.5, '#e8b890');
         EO(158, 142, 7, 6, '#f6d2ae'); R(150, 136, 10, 7, '#d8c8a8'); R(150, 136, 10, 1, OL);
         R(151, 141, 10, 3, '#ff5aa8'); R(155, 141, 2, 2, '#ffe040');
       }
@@ -538,17 +538,39 @@ const ART = (() => {
     }
     return bgCache[name];
   }
+  // 立ち絵画像（assets/chars/<id>_<表情>.png、480x320）。無ければドット絵で代用
+  const SPR = {}, EXPRS = ['normal', 'smile', 'sweat', 'shock', 'angry', 'sad', 'blush', 'break'];
+  function loadSprites(ids) {
+    for (const id of ids) for (const ex of EXPRS) {
+      const im = new Image(); im.src = `assets/chars/${id}_${ex}.png`;
+      SPR[id + '_' + ex] = im;
+    }
+  }
+  const sprite = (id, ex) => { const im = SPR[id + '_' + ex]; return im && im.complete && im.naturalWidth ? im : null; };
+  // 画面は 480x320。背景・小物は 240x160 の座標で描いて2倍に拡大する
   function render(ctx, s) {
+    const SC = ctx.canvas.width / W;
+    ctx.imageSmoothingEnabled = false;
+    ctx.setTransform(SC, 0, 0, SC, 0, 0);
     ctx.drawImage(bgCanvas(s.bg), 0, 0);
     use(ctx);
     if (ANIM[s.bg]) ANIM[s.bg](s.t);
     if (s.char) {
-      if (s.jitter) ctx.translate(s.jitter, 0);
-      drawChar(s.char, s.expr, s.mouth, s.blink);
-      if (s.jitter) ctx.setTransform(1, 0, 0, 1, 0, 0);
+      const im = sprite(s.char, s.expr) || sprite(s.char, 'normal');
+      if (im) {
+        ctx.setTransform(1, 0, 0, 1, (s.jitter || 0) * SC, 0);
+        ctx.imageSmoothingEnabled = true;
+        ctx.drawImage(im, 0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.imageSmoothingEnabled = false;
+      } else {
+        ctx.translate(s.jitter || 0, 0);
+        drawChar(s.char, s.expr, s.mouth, s.blink);
+      }
+      ctx.setTransform(SC, 0, 0, SC, 0, 0);
     }
     if (FG[s.bg]) FG[s.bg](s);
   }
   function icon(ctx, name) { use(ctx); ctx.clearRect(0, 0, 32, 32); (ICON[name] || ICON.memo)(); }
+  loadSprites(['ichijo', 'ninomiya', 'miura', 'yotsuya', 'saeko', 'kanae']);
   return { render, icon, W, H };
 })();

@@ -54,7 +54,7 @@ const INVEST = {
     spots: [
       { id: 'notice', x: 2, y: 37, w: 28, h: 36, l: 'i2_notice' },
       { id: 'wrist', x: 146, y: 132, w: 26, h: 18, l: 'i2_wrist' },
-      { id: 'pass', x: 106, y: 110, w: 28, h: 20, l: 'i2_pass' },
+      { id: 'pass', x: 104, y: 122, w: 32, h: 22, l: 'i2_pass' },
       { id: 'face', x: 96, y: 28, w: 48, h: 62, l: 'i2_face' },
       { id: 'tank', x: 29, y: 9, w: 62, h: 100, l: 'i2_tank' },
       { id: 'jelly', x: 160, y: 9, w: 51, h: 100, l: 'i2_jelly' },
