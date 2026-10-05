@@ -34,11 +34,10 @@ const INVEST = {
     bg: 'french', ch: 'ichijo', hint: '（一条さんの様子を、さりげなく観察してみよう）',
     spots: [
       { id: 'receipt', x: 0, y: 136, w: 28, h: 24, l: 'i1_floor' },
-      { id: 'hand', x: 136, y: 122, w: 26, h: 16, l: 'i1_hand' },
-      { id: 'watch', x: 74, y: 122, w: 26, h: 16, l: 'i1_watch' },
-      { id: 'phone', x: 164, y: 128, w: 32, h: 16, l: 'i1_phone' },
-      { id: 'wine', x: 52, y: 108, w: 20, h: 30, l: 'i1_wine' },
-      { id: 'plate', x: 100, y: 134, w: 40, h: 14, l: 'i1_plate' },
+      { id: 'hand', x: 120, y: 100, w: 80, h: 60, l: 'i1_hand' },
+      { id: 'watch', x: 54, y: 100, w: 66, h: 60, l: 'i1_watch' },
+      { id: 'phone', x: 200, y: 128, w: 30, h: 16, l: 'i1_phone' },
+      { id: 'wine', x: 31, y: 108, w: 20, h: 30, l: 'i1_wine' },
       { id: 'face', x: 96, y: 28, w: 48, h: 62, l: 'i1_face' },
       { id: 'window', x: 12, y: 14, w: 42, h: 70, l: 'i1_window' },
     ],
@@ -69,11 +68,10 @@ const INVEST = {
   ch3: {
     bg: 'izakaya', ch: 'miura', hint: '（カウンターの上や、三浦さんの話に注目してみよう）',
     spots: [
-      { id: 'key', x: 90, y: 130, w: 28, h: 14, l: 'i3_key' },
-      { id: 'mphone', x: 160, y: 126, w: 28, h: 18, l: 'i3_phone' },
-      { id: 'kphone', x: 4, y: 134, w: 26, h: 20, l: 'i3_kphone' },
-      { id: 'beer', x: 58, y: 102, w: 26, h: 28, l: 'i3_beer' },
-      { id: 'plate', x: 102, y: 127, w: 36, h: 10, l: 'i3_plate' },
+      { id: 'key', x: 29, y: 136, w: 26, h: 14, l: 'i3_key' },
+      { id: 'mphone', x: 194, y: 126, w: 28, h: 18, l: 'i3_phone' },
+      { id: 'kphone', x: 4, y: 132, w: 24, h: 20, l: 'i3_kphone' },
+      { id: 'beer', x: 30, y: 99, w: 26, h: 27, l: 'i3_beer' },
       { id: 'lantern', x: 14, y: 20, w: 34, h: 44, l: 'i3_lantern' },
       { id: 'menu', x: 176, y: 10, w: 60, h: 40, l: 'i3_menu' },
       { id: 'face', x: 96, y: 28, w: 48, h: 62, l: 'i3_face' },
@@ -88,9 +86,9 @@ const INVEST = {
   ch4: {
     bg: 'park', ch: 'yotsuya', hint: '（四谷さんの持ち物や、足元を見てみよう。話も聞いてみよう）',
     spots: [
-      { id: 'bag', x: 182, y: 100, w: 36, h: 38, l: 'i4_bag' },
+      { id: 'bag', x: 188, y: 100, w: 36, h: 38, l: 'i4_bag' },
       { id: 'memo', x: 20, y: 140, w: 26, h: 18, l: 'i4_memo' },
-      { id: 'lunch', x: 30, y: 121, w: 34, h: 18, l: 'i4_sand' },
+      { id: 'lunch', x: 20, y: 121, w: 34, h: 18, l: 'i4_sand' },
       { id: 'face', x: 96, y: 28, w: 48, h: 62, l: 'i4_self' },
       { id: 'tree', x: 0, y: 8, w: 40, h: 90, l: 'i4_tree' },
     ],
