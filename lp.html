@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>逆転婚活 ～その男、独身につき～</title>
+<meta name="description" content="38歳、婚活ラストチャンス。4人の男性の中から、既婚者のウソを見抜いて「本当の独身」を探し出せ。ブラウザで無料・約1時間で遊べる恋愛裁判アドベンチャー。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="逆転婚活 ～その男、独身につき～">
+<meta property="og:description" content="4人の中に、独身はひとりだけ。ウソを見抜いて、最後の恋をつかめ。ブラウザで無料・約1時間の恋愛裁判アドベンチャー。">
+<meta property="og:image" content="https://yotarosawaki.github.io/gyakuten-konkatsu/assets/og.png">
+<meta property="og:url" content="https://yotarosawaki.github.io/gyakuten-konkatsu/lp.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#12060c; --bg2:#1c0a14; --panel:#24101c; --line:#4a2236;
+  --pink:#ff5a8a; --pink2:#ffb0c8; --gold:#ffd84a; --green:#7cf08a; --blue:#8ad4ff;
+  --text:#fff3f6; --muted:#d9b8c6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DotGothic16',system-ui,sans-serif;line-height:1.8;letter-spacing:.03em;overflow-x:hidden}
+a{color:inherit}
+img,canvas{display:block;max-width:100%}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+section{padding:88px 0}
+.sec-k{color:var(--pink);letter-spacing:.4em;font-size:14px}
+h2{font-size:clamp(26px,4.4vw,40px);font-weight:normal;line-height:1.4;margin:6px 0 28px;text-shadow:3px 3px 0 #5a0a22}
+.lead{color:var(--muted);font-size:17px;max-width:720px}
+.red{color:#ff6a58}
+
+/* ボタン */
+.cta{display:inline-flex;align-items:center;gap:12px;font-family:inherit;font-size:22px;color:#2a1600;text-decoration:none;background:linear-gradient(#ffe48a,#e8a820);border:4px solid #fff;border-radius:12px;box-shadow:0 7px 0 #7a4a08,0 10px 24px rgba(255,180,40,.35);padding:14px 30px;transition:transform .1s,box-shadow .1s}
+.cta:hover{transform:translateY(-2px);box-shadow:0 9px 0 #7a4a08,0 14px 30px rgba(255,180,40,.45)}
+.cta:active{transform:translateY(5px);box-shadow:0 2px 0 #7a4a08}
+.cta small{font-size:14px;opacity:.8}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.meta span{border:2px solid var(--line);background:rgba(0,0,0,.3);border-radius:999px;padding:2px 14px;font-size:14px;color:var(--muted)}
+
+/* ヘッダー */
+header{position:sticky;top:0;z-index:20;background:rgba(18,6,12,.85);backdrop-filter:blur(6px);border-bottom:2px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.brand{font-size:20px;text-decoration:none;text-shadow:2px 2px 0 #8a0a2a}
+header nav{display:flex;gap:18px;align-items:center;font-size:14px}
+header nav a{text-decoration:none;color:var(--muted)}
+header nav a:hover{color:var(--text)}
+header .mini{color:#2a1600;background:var(--gold);padding:4px 14px;border-radius:8px;border:2px solid #fff}
+@media (max-width:720px){header nav a:not(.mini){display:none}}
+
+/* ヒーロー */
+.hero{position:relative;padding:64px 0 90px;background:
+  repeating-conic-gradient(from 0deg at 72% 45%,rgba(255,90,140,.10) 0 5deg,transparent 5deg 15deg),
+  radial-gradient(ellipse at 72% 40%,#8a1838 0%,#3a0a1e 45%,var(--bg) 75%);overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:center}
+.kicker{color:var(--pink2);letter-spacing:.5em;font-size:15px}
+.hero h1{font-weight:normal;font-size:clamp(56px,9vw,104px);line-height:1.1;margin:8px 0 4px;transform:rotate(-3deg);transform-origin:left;
+  text-shadow:6px 6px 0 #8a0a2a,-3px -3px 0 var(--pink),0 0 40px rgba(255,90,140,.5)}
+.hero .sub{color:var(--gold);font-size:clamp(18px,2.4vw,24px);text-shadow:3px 3px 0 #4a0010}
+.catch{font-size:clamp(24px,3.4vw,34px);margin:26px 0 8px;line-height:1.5}
+.catch span{display:inline-block}
+.catch b{font-weight:normal;color:var(--pink);text-shadow:2px 2px 0 #4a0010}
+.hero p.lead{margin-bottom:28px}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero .screen{order:-1}}
+
+/* ゲーム画面風の枠 */
+.screen{position:relative;border:6px solid #e8ecff;border-radius:14px;box-shadow:0 0 0 5px #11163a,0 20px 50px rgba(0,0,0,.6);overflow:hidden;background:#000;aspect-ratio:3/2;container-type:inline-size}
+.screen canvas{width:100%;height:100%;image-rendering:pixelated}
+.tb{position:absolute;left:1.5%;right:1.5%;bottom:2%;min-height:28%;background:rgba(12,20,68,.93);border:.6cqw solid #e8ecff;border-radius:1.2cqw;box-shadow:inset 0 0 0 .35cqw #4a5ac8;padding:2.2cqw 3cqw;font-size:3.6cqw;line-height:1.55;text-shadow:.25cqw .25cqw 0 #000}
+.tb .np{position:absolute;left:2cqw;top:-5cqw;background:#2a3aa8;border:.5cqw solid #e8ecff;border-bottom:none;border-radius:1cqw 1cqw 0 0;padding:.2cqw 2.4cqw;font-size:3.2cqw}
+.tb.green{color:var(--green)}
+.tb.blue{color:var(--blue)}
+.hud{position:absolute;right:2%;top:2.5%;color:#ff4a70;font-size:4.4cqw;text-shadow:.3cqw .3cqw 0 #000}
+.objection{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;
+  background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(255,255,255,.16) 0 4deg,transparent 4deg 12deg)}
+.objection .wb{filter:drop-shadow(.6cqw 0 0 #111) drop-shadow(-.6cqw 0 0 #111) drop-shadow(0 .6cqw 0 #111) drop-shadow(0 -.6cqw 0 #111)}
+.objection .bb{background:#fff;padding:5cqw 9cqw;transform:rotate(-5deg);clip-path:polygon(0% 42%,9% 31%,4% 10%,19% 18%,25% 1%,36% 15%,48% 0%,58% 14%,71% 2%,78% 17%,95% 8%,90% 29%,100% 39%,92% 51%,100% 64%,90% 72%,96% 93%,78% 84%,70% 100%,58% 86%,46% 100%,36% 86%,22% 98%,18% 81%,2% 90%,8% 70%,0% 58%,8% 50%)}
+.objection span{display:block;font-size:11cqw;color:#e81c2a;white-space:nowrap;text-shadow:.6cqw .6cqw 0 var(--gold),-.3cqw -.3cqw 0 #6a0008}
+.cursor{position:absolute;width:9%;aspect-ratio:1;border:.6cqw solid var(--gold);transform:translate(-50%,-50%);animation:blink .5s steps(2) infinite}
+@keyframes blink{50%{border-color:#ff8a3a}}
+
+/* ストーリー */
+.story{background:var(--bg2);border-top:2px solid var(--line);border-bottom:2px solid var(--line)}
+.story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.story p{font-size:18px;margin-bottom:16px}
+.story .q{color:var(--blue)}
+@media (max-width:860px){.story .wrap{grid-template-columns:1fr}}
+
+/* 容疑者 */
+.suspects{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+@media (max-width:980px){.suspects{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.suspects{grid-template-columns:1fr}}
+.card{background:var(--panel);border:3px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .15s,border-color .15s}
+.card:hover{transform:translateY(-4px);border-color:var(--pink)}
+.card .pic{position:relative;aspect-ratio:3/2;background:#000;container-type:inline-size}
+.card .pic canvas{width:100%;height:100%;image-rendering:pixelated}
+.card .tag{position:absolute;left:8px;top:8px;background:rgba(0,0,0,.7);border:2px solid var(--gold);color:var(--gold);font-size:13px;padding:0 10px;border-radius:6px}
+.card .body{padding:14px 16px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card .nm{font-size:22px;line-height:1.3}
+.card .nm small{font-size:13px;color:var(--muted);margin-left:6px}
+.card .job{font-size:14px;color:var(--pink2)}
+.card .quote{font-size:15px;color:var(--green);border-left:3px solid var(--green);padding-left:10px;margin:6px 0}
+.card ul{list-style:none;font-size:14px;color:var(--muted)}
+.card li::before{content:'？ ';color:var(--pink)}
+.card .ver{margin-top:auto;padding-top:10px;text-align:center;font-size:20px;border-top:2px dashed var(--line);color:var(--muted)}
+.hint{text-align:center;color:var(--muted);font-size:14px;margin-top:18px}
+
+/* 遊び方 */
+.how{background:var(--bg2);border-top:2px solid var(--line);border-bottom:2px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media (max-width:860px){.steps{grid-template-columns:1fr}}
+.step .num{display:inline-block;background:var(--pink);color:#fff;border-radius:8px;padding:0 12px;font-size:15px;margin:16px 0 6px}
+.step h3{font-weight:normal;font-size:24px;line-height:1.4}
+.step p{color:var(--muted);font-size:15px}
+.btns{display:flex;gap:8px;margin-top:10px}
+.btns i{font-style:normal;border:3px solid #fff;border-radius:8px;padding:2px 12px;font-size:15px}
+.b-blue{background:linear-gradient(#9ad4ff,#3a78e0)}
+.b-red{background:linear-gradient(#ffa090,#e0343a)}
+
+/* 脇役 */
+.cast{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media (max-width:760px){.cast{grid-template-columns:1fr}}
+.cast .card{flex-direction:row;cursor:default}
+.cast .card:hover{transform:none;border-color:var(--line)}
+.cast .pic{flex:0 0 46%;aspect-ratio:auto}
+@media (max-width:480px){.cast .card{flex-direction:column}.cast .pic{aspect-ratio:3/2}}
+
+/* 特長 */
+.feats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media (max-width:860px){.feats{grid-template-columns:repeat(2,1fr)}}
+.feat{background:var(--panel);border:3px solid var(--line);border-radius:14px;padding:22px 18px;text-align:center}
+.feat .ic{font-size:40px;line-height:1.2;color:var(--gold)}
+.feat h3{font-weight:normal;font-size:20px;margin:8px 0 4px}
+.feat p{font-size:14px;color:var(--muted)}
+
+/* 最後のCTA */
+.final{text-align:center;background:radial-gradient(ellipse at 50% 100%,#6a1030,var(--bg) 70%)}
+.final h2{margin-bottom:12px}
+.final .lead{margin:0 auto 32px}
+footer{border-top:2px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:13px;text-align:center;line-height:2}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.cursor{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top">逆転婚活</a>
+    <nav>
+      <a href="#story">ストーリー</a>
+      <a href="#suspects">容疑者</a>
+      <a href="#how">遊び方</a>
+      <a class="mini" href="./">プレイする</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ヒーロー -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="kicker">恋愛裁判アドベンチャー</div>
+      <h1>逆転婚活</h1>
+      <div class="sub">～その男、独身につき～</div>
+      <p class="catch"><span>4人の中に、</span><span><b>独身</b>はひとりだけ。</span></p>
+      <p class="lead">38歳、婚活ラストチャンス。<br>やさしい彼らの言葉に隠れた「ムジュン」を見抜いて、最後の恋をつかみとれ。</p>
+      <a class="cta" href="./">▶ ブラウザで無料プレイ</a>
+      <div class="meta"><span>プレイ時間 約1時間</span><span>無料</span><span>スマホ・PC対応</span><span>インストール不要</span></div>
+    </div>
+    <div class="screen" id="heroScreen">
+      <canvas width="480" height="320" data-scene="hero"></canvas>
+      <div class="hud">♥♥♥♥♥</div>
+      <div class="tb green" id="heroText"><div class="np" id="heroName">一条</div><span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ストーリー -->
+<section class="story" id="story">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-k">STORY</div>
+      <h2>人生の企画書に、<br>ひとつだけ空欄がある。</h2>
+      <p>結城カナエ、38歳。大手食品メーカーの商品企画課長。仕事は順調、部下にも慕われている。</p>
+      <p>ただ、<span class="red">結婚</span>と<span class="red">子ども</span>だけは、ずっと後回しにしてきた。子どものことを考えるなら——今年が、最後のチャンス。</p>
+      <p>婚活アプリで出会った4人の男性。みんな素敵。でも、みんな<span class="red">ちょっと怪しい</span>。</p>
+      <p class="q">「ウソには必ずムジュンがある。あなたの頭の中に、法廷を開きなさい」</p>
+      <p>親友の離婚弁護士・冴子のアドバイスで、カナエの<span class="red">「脳内法廷」</span>が開廷する。</p>
+    </div>
+    <div class="screen reveal">
+      <canvas width="480" height="320" data-scene="story"></canvas>
+      <div class="tb"><div class="np">冴子</div>恋愛だって裁判みたいなものよ。被告人は、男。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 容疑者 -->
+<section id="suspects">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-k">SUSPECTS</div>
+      <h2>既婚者か、独身か。<br>4人の「被告人」</h2>
+      <p class="lead">全員プロフィールは「独身」。でも、それぞれに気になるところがある。<br>ただの<span class="red">仕事の事情</span>？　<span class="red">女性に慣れていない</span>だけ？　それとも——</p>
+    </div>
+    <div class="suspects" style="margin-top:36px">
+      <div class="card reveal" data-char="ichijo" data-bg="french">
+        <div class="pic"><canvas width="480" height="320"></canvas><div class="tag">被告人 1</div></div>
+        <div class="body">
+          <div class="nm">一条 誠<small>42歳</small></div>
+          <div class="job">外資系コンサル会社のマネージャー</div>
+          <div class="quote">「週末？ほとんど海外出張さ」</div>
+          <ul><li>会えるのはいつも平日の夜</li><li>左手の薬指に、白い跡</li></ul>
+          <div class="ver">既婚？　独身？</div>
+        </div>
+      </div>
+      <div class="card reveal" data-char="ninomiya" data-bg="aquarium">
+        <div class="pic"><canvas width="480" height="320"></canvas><div class="tag">被告人 2</div></div>
+        <div class="body">
+          <div class="nm">二宮 翔太<small>37歳</small></div>
+          <div class="job">表参道の美容師</div>
+          <div class="quote">「このヘアゴム？仕事道具ですよ！」</div>
+          <ul><li>日曜日は絶対に連絡がつかない</li><li>手首にキャラもののヘアゴム</li></ul>
+          <div class="ver">既婚？　独身？</div>
+        </div>
+      </div>
+      <div class="card reveal" data-char="miura" data-bg="izakaya">
+        <div class="pic"><canvas width="480" height="320"></canvas><div class="tag">被告人 3</div></div>
+        <div class="body">
+          <div class="nm">三浦 健吾<small>39歳</small></div>
+          <div class="job">不動産会社の社長</div>
+          <div class="quote">「僕、バツイチです。隠し事はしたくないんで」</div>
+          <ul><li>家の話になると歯切れが悪い</li><li>スマホに「家裁」の予定</li></ul>
+          <div class="ver">既婚？　独身？</div>
+        </div>
+      </div>
+      <div class="card reveal" data-char="yotsuya" data-bg="park">
+        <div class="pic"><canvas width="480" height="320"></canvas><div class="tag">被告人 4</div></div>
+        <div class="body">
+          <div class="nm">四谷 優<small>40歳</small></div>
+          <div class="job">おもちゃメーカーのエンジニア</div>
+          <div class="quote">「ミ、ミサキが呼んでるんで、行かなきゃ！」</div>
+          <ul><li>夜中でも「ミサキ」に呼び出される</li><li>家に呼ぶと真っ青になる</li></ul>
+          <div class="ver">既婚？　独身？</div>
+        </div>
+      </div>
+    </div>
+    <p class="hint">カードをタップすると、表情が変わります。真実は、ゲームの中で。</p>
+  </div>
+</section>
+
+<!-- 遊び方 -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-k">HOW TO PLAY</div>
+      <h2>調べて、ゆさぶって、<br>証拠をつきつけろ。</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="screen">
+          <canvas width="480" height="320" data-scene="invest"></canvas>
+          <div class="cursor" style="left:4.5%;top:93%"></div>
+        </div>
+        <div class="num">STEP 1</div>
+        <h3>デートで「調査」</h3>
+        <p>デート中、気になるところをタップして調べたり、話を聞いたりして手がかりを集める。落ちていたレシート、指輪の跡、スマホの着信……すべてが証拠になる。</p>
+      </div>
+      <div class="step reveal">
+        <div class="screen">
+          <canvas width="480" height="320" data-scene="cross"></canvas>
+          <div class="hud">♥♥♥♥♥</div>
+          <div class="tb green"><div class="np">一条</div>先週末も、金曜の夜からシンガポールに出張していた。</div>
+        </div>
+        <div class="num">STEP 2</div>
+        <h3>脳内法廷で「尋問」</h3>
+        <p>怪しいと思ったら、頭の中で法廷が開く。相手の証言を聞いて、気になる発言を「ゆさぶる」。</p>
+        <div class="btns"><i class="b-blue">ゆさぶる</i></div>
+      </div>
+      <div class="step reveal">
+        <div class="screen">
+          <canvas width="480" height="320" data-scene="objection"></canvas>
+          <div class="objection"><div class="wb"><div class="bb"><span>異議あり！</span></div></div></div>
+        </div>
+        <div class="num">STEP 3</div>
+        <h3>証拠を「つきつける」</h3>
+        <p>証言と証拠のムジュンを見つけたら、証拠をつきつける！間違えると心のゲージ（♥）が減っていく。</p>
+        <div class="btns"><i class="b-red">つきつける</i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 脇役 -->
+<section>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-k">CAST</div>
+      <h2>彼女たちと、真実を探す。</h2>
+    </div>
+    <div class="cast">
+      <div class="card reveal" data-char="kanae" data-bg="office" data-still="1">
+        <div class="pic"><canvas width="480" height="320"></canvas></div>
+        <div class="body">
+          <div class="nm">結城 カナエ<small>38歳</small></div>
+          <div class="job">主人公／食品メーカー 商品企画課長</div>
+          <p style="font-size:14px;color:var(--muted)">仕事はバリバリこなすけれど、恋愛はずっと後回し。子どものことを考えると、今年が最後のチャンス。疑うのは、信じたいから。</p>
+        </div>
+      </div>
+      <div class="card reveal" data-char="saeko" data-bg="bar" data-still="1">
+        <div class="pic"><canvas width="480" height="320"></canvas></div>
+        <div class="body">
+          <div class="nm">氷室 冴子<small>38歳</small></div>
+          <div class="job">親友／離婚専門の弁護士</div>
+          <p style="font-size:14px;color:var(--muted)">クールで毒舌、本人もバツイチ。「男はウソをつく」が口ぐせ。カナエの脳内法廷では、ある時は助言者、ある時は——手ごわい検事に。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 特長 -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="feats">
+      <div class="feat reveal"><div class="ic">⏱</div><h3>約1時間で完結</h3><p>序章＋全4話。忙しい大人でも、週末に遊びきれるボリューム。</p></div>
+      <div class="feat reveal"><div class="ic">▣</div><h3>GBA風ドット絵</h3><p>なつかしい携帯ゲーム機の空気感。チップチューンのBGMつき。</p></div>
+      <div class="feat reveal"><div class="ic">♥</div><h3>8つの表情</h3><p>ウソがバレた瞬間の「崩壊顔」まで、全員8パターンの表情で反応。</p></div>
+      <div class="feat reveal"><div class="ic">▶</div><h3>すぐ遊べる</h3><p>ブラウザで無料。スマホでもPCでも、インストール不要。章ごとに自動セーブ。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="final">
+  <div class="wrap">
+    <div class="sec-k">PLAY NOW</div>
+    <h2>その男、本当に独身？</h2>
+    <p class="lead">真実を見抜けるのは、あなただけ。</p>
+    <a class="cta" href="./">▶ 今すぐ無料でプレイ <small>約1時間</small></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    逆転婚活 ～その男、独身につき～<br>
+    ※この物語はフィクションです。実在の人物・団体とは関係ありません。<br>
+    音が出ます。ゲーム内の♪ボタンで切りかえられます。
+  </div>
+</footer>
+
+<script src="js/art.js"></script>
+<script>
+'use strict';
+// ゲームと同じ描画プログラムで、LP上の画面を動かす
+const items = [];
+const CHAR_EXPRS = ['normal', 'smile', 'sweat', 'shock', 'blush', 'sad', 'angry', 'break'];
+const PROPS = { french: { receipt: true }, park: { bag: true, memo: true, lunch: true }, izakaya: { mphone: true, kphone: true } };
+
+// カード：タップで表情を切りかえる
+document.querySelectorAll('.card[data-char]').forEach(card => {
+  const it = { cv: card.querySelector('canvas'), bg: card.dataset.bg, char: card.dataset.char, expr: card.dataset.char === 'saeko' ? 'smile' : 'normal', k: 0 };
+  items.push(it);
+  if (!card.dataset.still) card.addEventListener('click', () => { it.k = (it.k + 1) % CHAR_EXPRS.length; it.expr = CHAR_EXPRS[it.k]; });
+  else card.addEventListener('click', () => { it.k = (it.k + 1) % 3; it.expr = ['smile', 'normal', 'shock'][it.k]; });
+});
+
+// 固定シーン
+const SCENES = {
+  story: { bg: 'bar', char: 'saeko', expr: 'smile' },
+  invest: { bg: 'french', char: 'ichijo', expr: 'normal' },
+  cross: { bg: 'court', char: 'ichijo', expr: 'smile' },
+  objection: { bg: 'court', char: 'ichijo', expr: 'shock' },
+};
+document.querySelectorAll('canvas[data-scene]').forEach(cv => {
+  const s = cv.dataset.scene;
+  if (SCENES[s]) items.push(Object.assign({ cv }, SCENES[s]));
+});
+
+// ヒーロー：4人が順番に証言する
+const HERO = [
+  { bg: 'court', char: 'ichijo', name: '一条', exprs: ['smile', 'sweat', 'break'], text: '独身の男が、指輪なんてするわけないだろう？' },
+  { bg: 'court', char: 'ninomiya', name: '二宮', exprs: ['smile', 'sweat', 'shock'], text: 'このヘアゴムは、姪っ子のなんです！' },
+  { bg: 'court', char: 'miura', name: '三浦', exprs: ['normal', 'sweat', 'sad'], text: '家庭裁判所なんて、行ったこともありませんよ。' },
+  { bg: 'court', char: 'yotsuya', name: '四谷', exprs: ['sweat', 'shock', 'blush'], text: 'い、家っ！？うちに、ですか！？' },
+];
+const heroCv = document.querySelector('canvas[data-scene="hero"]');
+const hero = { cv: heroCv, bg: 'court', char: 'ichijo', expr: 'smile' };
+items.push(hero);
+const heroSpan = document.querySelector('#heroText span'), heroName = document.getElementById('heroName');
+let hi = 0, typer = null;
+function heroNext() {
+  const h = HERO[hi % HERO.length]; hi++;
+  Object.assign(hero, { bg: h.bg, char: h.char, expr: h.exprs[0] });
+  heroName.textContent = h.name;
+  let n = 0; clearInterval(typer);
+  typer = setInterval(() => { heroSpan.textContent = h.text.slice(0, ++n); if (n >= h.text.length) clearInterval(typer); }, 55);
+  setTimeout(() => { hero.expr = h.exprs[1]; }, 2600);
+  setTimeout(() => { hero.expr = h.exprs[2]; }, 3600);
+}
+heroNext(); setInterval(heroNext, 4800);
+
+// 画面に見えているものだけ描く
+const vis = new Set();
+const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? vis.add(e.target) : vis.delete(e.target)), { rootMargin: '100px' });
+items.forEach(it => { it.ctx = it.cv.getContext('2d'); io.observe(it.cv); });
+function loop(t) {
+  for (const it of items) {
+    if (!vis.has(it.cv)) continue;
+    ART.render(it.ctx, { bg: it.bg, char: it.char, expr: it.expr, mouth: false, blink: false, props: PROPS[it.bg] || {}, t,
+      jitter: it.expr === 'break' ? ((t / 50 | 0) % 2 ? 1 : -1) : 0 });
+  }
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+
+// スクロールでふわっと表示
+const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } }), { threshold: .15 });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+</script>
+</body>
+</html>
