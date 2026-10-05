@@ -546,6 +546,7 @@ const ART = (() => {
       SPR[id + '_' + ex] = im;
     }
   }
+  const FIT = { bar: 0.74, izakaya: 0.74, french: 0.78 };
   const sprite = (id, ex) => { const im = SPR[id + '_' + ex]; return im && im.complete && im.naturalWidth ? im : null; };
   // 画面は 480x320。背景・小物は 240x160 の座標で描いて2倍に拡大する
   function render(ctx, s) {
@@ -558,9 +559,11 @@ const ART = (() => {
     if (s.char) {
       const im = sprite(s.char, s.expr) || sprite(s.char, 'normal');
       if (im) {
+        // カウンターやテーブルが手前にある場面は、肩まで見えるよう少し小さく描く
+        const k = FIT[s.bg] || 1, cw = ctx.canvas.width, ch = ctx.canvas.height;
         ctx.setTransform(1, 0, 0, 1, (s.jitter || 0) * SC, 0);
         ctx.imageSmoothingEnabled = true;
-        ctx.drawImage(im, 0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.drawImage(im, cw * (1 - k) / 2, (26 - 22 * k) * cw / 480, cw * k, ch * k);
         ctx.imageSmoothingEnabled = false;
       } else {
         ctx.translate(s.jitter || 0, 0);
