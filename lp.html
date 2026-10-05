@@ -125,7 +125,7 @@ header .mini{color:#2a1600;background:var(--gold);padding:4px 14px;border-radius
 .cast .card{flex-direction:row;cursor:default}
 .cast .card:hover{transform:none;border-color:var(--line)}
 .cast .pic{flex:0 0 46%;aspect-ratio:3/2;align-self:center}
-@media (max-width:480px){.cast .card{flex-direction:column}.cast .pic{aspect-ratio:3/2}}
+@media (max-width:600px){.cast .card{flex-direction:column}.cast .pic{flex:none;width:100%;aspect-ratio:3/2}}
 
 /* 特長 */
 .feats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -353,7 +353,7 @@ footer{border-top:2px solid var(--line);padding:28px 0 40px;color:var(--muted);f
   </div>
 </footer>
 
-<script src="js/art.js?v=3"></script>
+<script src="js/art.js?v=4"></script>
 <script>
 'use strict';
 // ゲームと同じ描画プログラムで、LP上の画面を動かす
@@ -363,7 +363,7 @@ const PROPS = { french: { receipt: true }, park: { bag: true, memo: true, lunch:
 
 // カード：タップで表情を切りかえる
 document.querySelectorAll('.card[data-char]').forEach(card => {
-  const it = { cv: card.querySelector('canvas'), bg: card.dataset.bg, char: card.dataset.char, expr: card.dataset.char === 'saeko' ? 'smile' : 'normal', k: 0 };
+  const it = { portrait: true, cv: card.querySelector('canvas'), bg: card.dataset.bg, char: card.dataset.char, expr: card.dataset.char === 'saeko' ? 'smile' : 'normal', k: 0 };
   items.push(it);
   if (!card.dataset.still) card.addEventListener('click', () => { it.k = (it.k + 1) % CHAR_EXPRS.length; it.expr = CHAR_EXPRS[it.k]; });
   else card.addEventListener('click', () => { it.k = (it.k + 1) % 3; it.expr = ['smile', 'normal', 'shock'][it.k]; });
@@ -411,7 +411,7 @@ items.forEach(it => { it.ctx = it.cv.getContext('2d'); io.observe(it.cv); });
 function loop(t) {
   for (const it of items) {
     if (!vis.has(it.cv)) continue;
-    ART.render(it.ctx, { bg: it.bg, char: it.char, expr: it.expr, mouth: false, blink: false, props: PROPS[it.bg] || {}, t,
+    ART.render(it.ctx, { bg: it.bg, char: it.char, expr: it.expr, mouth: false, blink: false, props: PROPS[it.bg] || {}, t, portrait: it.portrait,
       jitter: it.expr === 'break' ? ((t / 50 | 0) % 2 ? 1 : -1) : 0 });
   }
   requestAnimationFrame(loop);

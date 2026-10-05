@@ -560,7 +560,7 @@ const ART = (() => {
       const im = sprite(s.char, s.expr) || sprite(s.char, 'normal');
       if (im) {
         // カウンターやテーブルが手前にある場面は、肩まで見えるよう少し小さく描く
-        const k = FIT[s.bg] || 1, cw = ctx.canvas.width, ch = ctx.canvas.height;
+        const k = s.portrait ? 1 : (FIT[s.bg] || 1), cw = ctx.canvas.width, ch = ctx.canvas.height;
         ctx.setTransform(1, 0, 0, 1, (s.jitter || 0) * SC, 0);
         ctx.imageSmoothingEnabled = true;
         ctx.drawImage(im, cw * (1 - k) / 2, (26 - 22 * k) * cw / 480, cw * k, ch * k);
@@ -571,7 +571,7 @@ const ART = (() => {
       }
       ctx.setTransform(SC, 0, 0, SC, 0, 0);
     }
-    if (FG[s.bg]) FG[s.bg](s);
+    if (FG[s.bg] && !s.portrait) FG[s.bg](s);   // portrait: 紹介用。手前の小物を描かない
   }
   function icon(ctx, name) { use(ctx); ctx.clearRect(0, 0, 32, 32); (ICON[name] || ICON.memo)(); }
   loadSprites(['ichijo', 'ninomiya', 'miura', 'yotsuya', 'saeko', 'kanae']);
